@@ -61,7 +61,7 @@ import { Link } from 'react-router-dom';
               </Form.Item>
     
               <Form.Item className='buttonset' style={{textAlign:'center'}}>
-                <Button type="primary" htmlType="submit" style={{borderRadius:20}}>
+                <Button type="primary" htmlType="submit" style={{borderRadius:20, width:350}}>
                   Sign Up
                 </Button>
                 <Space style={{padding:10}}>

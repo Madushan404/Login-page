@@ -1,7 +1,8 @@
 import React from 'react';
 import type { FormProps } from 'antd';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Space } from 'antd';
 import { Link } from 'react-router-dom';
+import "../index.css"
 
 type FieldType = {
   username?: string;
@@ -20,8 +21,8 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 
 const Froget: React.FC = () => {
   return (
-    <div style={{ justifyContent: 'center'}}>
-        <div style={{maxWidth:350,}}>
+    <div className="signup-container">
+        <div className="form-box">
       <Form
         name="basic"
         initialValues={{ remember: true }}
@@ -36,15 +37,14 @@ const Froget: React.FC = () => {
           <Input placeholder='Enter Your E-Mail address' type='email'  style={{borderRadius: 20 }}/>
         </Form.Item>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit" style={{borderRadius:20, padding:15}}>
+        <Form.Item className='buttonset' style={{textAlign:'center'}}>
+          <Button type="primary" htmlType="submit" style={{borderRadius:20,width:350}}>
             Reset Password
           </Button>
-        </Form.Item>
-
-        <Form.Item<FieldType> name="remember" valuePropName="checked">
-               
-         <Link to="/login" style={{alignContent:'right'}}>Return to Login ?</Link>
+        
+          <Space  style={{paddingTop:10}}>   
+         <Link to="/login">Return to Login ?</Link>
+         </Space>  
         </Form.Item>
       </Form>
       </div>

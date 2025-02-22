@@ -46,12 +46,12 @@ const Login: React.FC = () => {
         </Form.Item>
 
        
-        <Form.Item<FieldType> name="remember" valuePropName="checked"  style={{textAlign:'right'}}>
+        <Form.Item<FieldType> name="remember" valuePropName="checked"  >
            <Space style={{textAlign:'left'}}>
           <Checkbox>Remember Me</Checkbox>
           </Space> 
           <Space >
-          <Link to="/froget">Froget Password ?</Link>
+          <Link to="/froget" style={{marginLeft:100}}>Froget Password ?</Link>
           </Space>
         </Form.Item>
 
@@ -59,7 +59,7 @@ const Login: React.FC = () => {
           <Button type="primary" htmlType="submit" style={{borderRadius:20}}>
             Log In
           </Button>
-          <Space style={{padding:10}}>
+          <Space >
           <Typography.Text style={{padding:10}}>
                  OR
             </Typography.Text>
@@ -69,7 +69,7 @@ const Login: React.FC = () => {
             Sign Up with Google
            
           </Button>
-          <Space style={{padding:10}}>
+          <Space style={{paddingTop:10}}>
           <Typography.Text >
             <p>Don’t have an account? 
             <Link to="/signup">
