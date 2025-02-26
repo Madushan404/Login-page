@@ -3,7 +3,9 @@ import React from 'react';
 import type { FormProps } from 'antd';
 import { Button, Checkbox,  Form, Input,Space,Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { GoogleOutlined  } from '@ant-design/icons';
+import { LockOutlined, UserOutlined } from "@ant-design/icons"
+import googleIcon from "../assets/icons8-google.svg"
+import Header from '../component/Header';
 
 type FieldType = {
   username?: string;
@@ -23,6 +25,8 @@ const Login: React.FC = () => {
   return (
     <div className="signup-container">
         <div className="form-box">
+        <div style={{scale:'0.5', textAlign:'center',margin:15}}>
+        <Header/></div>
                 
       <Form
         name="basic"
@@ -31,18 +35,24 @@ const Login: React.FC = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
          >
+
+        <Form.Item style={{textAlign:'center'}}>
+            <Space style={{fontSize:30,fontFamily:'Poppins Medium',}}>Welcome Back</Space><br />
+            <Space style={{color:'gray'}}>Login to your account </Space>
+        </Form.Item>
+
         <Form.Item<FieldType>
           name="username"          
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Input placeholder='User Name'  style={{borderRadius: 20 }}/>
+          <Input placeholder='User Name'  style={{borderRadius: 20 }} prefix={<UserOutlined />}/>
         </Form.Item>
 
         <Form.Item<FieldType>
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password  placeholder='Password' style={{borderRadius: 20 }}/>
+          <Input.Password  placeholder='Password' style={{borderRadius: 20 }} prefix={<LockOutlined />}/>
         </Form.Item>
 
        
@@ -51,7 +61,7 @@ const Login: React.FC = () => {
           <Checkbox>Remember Me</Checkbox>
           </Space> 
           <Space >
-          <Link to="/froget" style={{marginLeft:100}}>Froget Password ?</Link>
+          <Link to="/froget" style={{marginLeft:60}}>Froget Password ?</Link>
           </Space>
         </Form.Item>
 
@@ -61,19 +71,24 @@ const Login: React.FC = () => {
           </Button>
           <Space >
           <Typography.Text style={{padding:10}}>
-                 OR
+            <Space style={{padding:10}}>
+            OR
+            </Space>
             </Typography.Text>
             </Space>
-          <Button icon={<GoogleOutlined />} style={{borderRadius:20}}>
-        
-            Sign Up with Google
-           
-          </Button>
+            <Button  style={{borderRadius:20,padding:10}}>
+                            <img
+                                src={googleIcon}
+                                alt="google icon"
+                                style={{ maxWidth: 20, width: "100%" }}
+                            />
+                            Sign In With Google
+                        </Button>
           <Space style={{paddingTop:10}}>
           <Typography.Text >
-            <p>Don’t have an account? 
+            <Space>Don’t have an account? 
             <Link to="/signup">
-             Sign up </Link></p>
+             Sign up </Link></Space>
             </Typography.Text>
             </Space>
         </Form.Item>
