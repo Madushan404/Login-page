@@ -1,16 +1,18 @@
 import'../index.css'
-import React from 'react';
+import React, { useState } from 'react';
 import type { FormProps } from 'antd';
-import { Button, Checkbox,  Form, Input,Space,Typography } from 'antd';
+import { Button, Checkbox,  Form, Input,Space,Typography,message  } from 'antd';
 import { Link } from 'react-router-dom';
-import { LockOutlined, UserOutlined } from "@ant-design/icons"
+import { LockOutlined, MailOutlined } from "@ant-design/icons"
 import googleIcon from "../assets/icons8-google.svg"
 import Header from '../component/Header';
+
 
 type FieldType = {
   username?: string;
   password?: string;
   remember?: boolean; 
+  email?:string;
 };
 
 const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
@@ -21,7 +23,25 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 
+
+
 const Login: React.FC = () => {
+
+    const [form] = Form.useForm(); // Form instance for validation handling
+
+    // Handle successful form submission
+    const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+      console.log("Success:", values);
+      message.success("Login successful!"); // Show success message
+    };
+  
+    // Handle failed form submission
+    const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
+      console.log("Failed:", errorInfo);
+      message.error("Please check your input and try again."); // Show error message
+    };
+
+
   return (
     <div className="signup-container">
         <div className="form-box">
@@ -42,15 +62,18 @@ const Login: React.FC = () => {
         </Form.Item>
 
         <Form.Item<FieldType>
-          name="username"          
-          rules={[{ required: true, message: 'Please input your username!' }]}
+         name="email"
+         rules={[
+           { required: true, message: 'Please input your E-mail!' },
+           { type: 'email', message: 'Please Enter a Valid Email Address' }
+         ]}
         >
-          <Input placeholder='User Name'  style={{borderRadius: 20 }} prefix={<UserOutlined />}/>
+          <Input placeholder='E-mail Address' style={{borderRadius: 20 }} prefix={<MailOutlined />}/>
         </Form.Item>
 
         <Form.Item<FieldType>
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[{ required: true, min:8, message: 'Please input your password!' }]}
         >
           <Input.Password  placeholder='Password' style={{borderRadius: 20 }} prefix={<LockOutlined />}/>
         </Form.Item>
